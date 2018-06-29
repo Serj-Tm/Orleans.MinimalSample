@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Orleans.MinimalSample.Interfaces
 {
-    public interface ISample
-    {
-        string Ping(string message);
-    }
+        public interface ISample : IGrainWithStringKey
+        {
+            Task<string> Ping(string message);
+        }
 }
