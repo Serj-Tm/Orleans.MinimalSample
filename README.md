@@ -19,7 +19,7 @@ Server
         {
             using (var host = new SiloHostBuilder()
                 .UseLocalhostClustering()
-                //.ConfigureLogging(logging => logging.AddConsole())
+                //.ConfigureLogging(logging => logging.AddConsole()) //Install-Package Microsoft.Extensions.Logging.Console
                 .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(SampleGrain).Assembly).WithReferences())
                 .Build())
             {
@@ -49,6 +49,7 @@ Interfaces
 .Net Standard class library
 
     Install-Package Microsoft.Orleans.Core.Abstractions
+    Install-Package Microsoft.Orleans.OrleansCodeGenerator.Build
 
     public interface ISample : IGrainWithStringKey
     {
@@ -71,7 +72,7 @@ Client
     {
         using (var client = new ClientBuilder()
             .UseLocalhostClustering()
-            //.ConfigureLogging(logging => logging.AddConsole())
+            //.ConfigureLogging(logging => logging.AddConsole()) //Install-Package Microsoft.Extensions.Logging.Console
             .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(ISample).Assembly).WithReferences())
             .Build())
         {
